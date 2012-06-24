@@ -1,0 +1,48 @@
+﻿<Window x:Class="TestClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Title="MainWindow" Height="450" Width="525" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="NewTask" Content="New Task" Click="OnNewTask" Width="100"/>
+            <Button x:Name="ScheduleTask" Content="Schedule Task" Click="OnScheduleNewTask" Width="100" IsEnabled="False"/>
+        </StackPanel>
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="143*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="88*" />
+                <ColumnDefinition Width="14*" />
+                <ColumnDefinition Width="401*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Task name" VerticalAlignment="Center"/>
+            <TextBlock Text="Due date/time" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBlock Text="Instructions" Grid.Row="2" VerticalAlignment="Top"/>
+            <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Top">
+                <TextBlock Text="Candidates"/>
+                <Button Content="Add" ToolTip="Add candidate" Click="OnAddCandidate"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="4" VerticalAlignment="Top">
+                <TextBlock Text="Animals" />
+                <Button Content="Add" ToolTip="Add animal" Click="OnAddAnimal"/>
+            </StackPanel>
+
+            <TextBox x:Name="TaskName" Grid.Row="0" Grid.Column="2"/>
+            <DatePicker x:Name="DueDate" Grid.Row="1" Grid.Column="2" Width="120" HorizontalAlignment="Left"/>
+            <TextBox x:Name="Instructions" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Height="100"/>
+            <ListBox x:Name="CandidateList"  Grid.Row="3" Grid.Column="2" Height="100"
+                     ItemsSource="{Binding Candidates}" DisplayMemberPath="Name"/>
+            <ListBox x:Name="AnimalList" Grid.Row="4" Grid.Column="2" 
+                     ItemsSource="{Binding Animals}" DisplayMemberPath="Name"/>
+        </Grid>
+    </Grid>
+</Window>
